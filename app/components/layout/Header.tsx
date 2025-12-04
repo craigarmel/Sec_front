@@ -1,0 +1,33 @@
+import Link from "next/link";
+
+import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+export default function Header() {
+  return (
+    <header className="w-full h-25 bg-gradient-to-b from-white to-transparent backdrop-blur-sm sticky top-0 z-50">
+      <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
+        <Link href="/" className="text-xl font-semibold tracking-tight">
+          SecureBlog
+        </Link>
+        <NavigationMenu>
+          <NavigationMenuList className="hidden md:flex gap-6 text-sm font-medium">
+            <Link href="/articles" className="hover:text-black/70 transition">
+              Articles
+            </Link>
+            <Link href="/legal" className="hover:text-black/70 transition">
+              Mentions légales
+            </Link>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <div className="hidden md:flex gap-3">
+          <Link href="/auth/login">
+            <Button>Connexion</Button>
+          </Link>
+          <Link href="/auth/register">
+            <Button>S&apos;inscrire</Button>
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}

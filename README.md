@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Blog App
 
+Welcome to the **Next.js Blog App**!  
+This project is a simple blog application built with [Next.js](https://nextjs.org/), featuring modern styling and easy setup. You can run it locally with Yarn or npm, or deploy it using Docker.
+
+---
+
+## 🚀 Getting Started (Manual)
 ## Getting Started
 
-First, run the development server:
+### Manual Setup (Yarn or NPM)
 
+1. **Clone the repository:**
+
+    ```bash
+    git clone <your-repo-url>
+    cd <your-repo-name>
+    ```
+
+
+### 1. Install Dependencies
+
+Using **Yarn**:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📚 Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. [Getting Started (Manual)](#-getting-started-manual)
+    - [Manual Setup (Yarn or NPM)](#manual-setup-yarn-or-npm)
+    - [Install Dependencies](#1-install-dependencies)
+    - [Run the Development Server](#2-run-the-development-server)
+2. [Running with Docker](#-running-with-docker)
+3. [Project Structure](#-project-structure)
+4. [License](#-license)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+### 2. Run the Development Server
 
-To learn more about Next.js, take a look at the following resources:
+Using **Yarn**:
+```bash
+yarn dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Using **npm**:
+```bash
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see your app in action!
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🐳 Running with Docker
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Build the Docker image:**
+   ```bash
+   docker compose --build
+   ```
+
+Then visit [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 📁 Project Structure
+
+- `app/` – Next.js app routes and pages
+- `app/auth/login/` – Example authorized route (login page)
+- `app/globals.css` – Styling, includes Tailwind CSS configuration
+- `postcss.config.mjs` – PostCSS configuration for Tailwind CSS
+- `Dockerfile` – Containerization for deployment
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+Happy blogging! 🚀
+
