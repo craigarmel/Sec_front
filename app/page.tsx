@@ -1,14 +1,11 @@
 // import Image from "next/image";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div>
-      <Header />
       <BackgroundVideo />
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
         <h1
@@ -29,7 +26,6 @@ export default function Home() {
           </Link>
         </Button>
       </div>
-      <Footer />
     </div>
   );
 }

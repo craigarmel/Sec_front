@@ -115,8 +115,7 @@ export default function ArticlePage() {
 
   return (
     <div>
-        <Header />
-        <div className="max-w-2xl mx-auto px-4 py-8 space-y-8">
+        <div className="max-w-2xl mx-auto px-20 py-8 space-y-8">
         <ArticleDisplay
             title={fakeArticle.title}
             description={fakeArticle.description}
@@ -144,9 +143,10 @@ export default function ArticlePage() {
             )}
             </div>
         </section>
-        <SimilarArticles articles={similarArticles} />
+        <section>
+            <SimilarArticles articles={similarArticles} />
+        </section>
         </div>
-        <Footer/>
     </div>
   );
 }

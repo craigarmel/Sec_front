@@ -24,8 +24,8 @@ type SimilarArticlesProps = {
 
 export default function SimilarArticles({ articles }: SimilarArticlesProps) {
   return (
-    <section>
-      <h2 className="text-lg font-semibold mb-2 mt-10">Articles similaires</h2>
+    <section className="mb-20">
+      <h2 className="text-xl font-semibold text-center mb-2 mt-10">Articles similaires</h2>
       <Carousel>
         <CarouselContent className="gap-4">
           {Array.from({ length: 5 }).map((_, idx) => {

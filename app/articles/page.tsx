@@ -1,5 +1,4 @@
 import ArticleCard from "../components/blog/ArticleCard";
-import Header from "../components/layout/Header";
 export default function Articles() {
   const articles = [
     {
@@ -152,17 +151,6 @@ export default function Articles() {
 
   return (
     <div>
-      <Header />
-      <div
-        className="fixed inset-0 -z-4 w-full h-full"
-        style={{
-          backgroundImage: "url('/images/background.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-        aria-hidden="true"
-      />
       <div className="space-y-12 max-w-3xl mx-auto px-4 py-8">
         {articles.map((article) => (
           <div key={article.id} className="space-y-4">
