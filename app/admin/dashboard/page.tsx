@@ -1,4 +1,5 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Home } from "lucide-react"
+import Link from "next/link"
 
 import {
   Sidebar,
@@ -25,7 +26,9 @@ export default function Dashboard() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>SecureBlog</SidebarGroupLabel>
+          <SidebarGroupLabel>
+            <Link href="/">SecureBlog</Link>
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

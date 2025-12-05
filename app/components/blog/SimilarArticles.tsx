@@ -1,0 +1,53 @@
+"use client"
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import ArticleCard from "./ArticleCard"
+
+type Article = {
+  title: string
+  description: string
+  imageUrl?: string
+  link: string
+  date?: string
+  author?: string
+}
+
+type SimilarArticlesProps = {
+  articles: Article[]
+}
+
+export default function SimilarArticles({ articles }: SimilarArticlesProps) {
+  return (
+    <section>
+      <h2 className="text-lg font-semibold mb-2 mt-10">Articles similaires</h2>
+      <Carousel>
+        <CarouselContent className="gap-4">
+          {Array.from({ length: 5 }).map((_, idx) => {
+            const article = articles[idx];
+            if (!article) return null;
+            return (
+              <CarouselItem key={idx} className="sm:basis-1/2 md:basis-1/3">
+                <ArticleCard
+                  title={article.title}
+                  description={article.description}
+                  imageUrl={article.imageUrl}
+                  link={article.link}
+                  date={article.date}
+                  author={article.author}
+                />
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+        <CarouselPrevious/>
+        <CarouselNext/>
+      </Carousel>
+    </section>
+  )
+}
