@@ -1,14 +1,15 @@
 import { Card, CardHeader, CardContent, CardDescription } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { sanitizeText } from "@/lib/utils"
 
 type CommentCardProps = {
-  author: {
-    name: string
-    avatarUrl?: string
+  readonly author: {
+    readonly name: string
+    readonly avatarUrl?: string
   }
-  content: string
-  date: string
-  highlighted?: boolean
+  readonly content: string
+  readonly date: string
+  readonly highlighted?: boolean
 }
 
 export default function CommentCard({
@@ -31,8 +32,8 @@ export default function CommentCard({
           <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
         </Avatar>
         <div>
-          <div className="font-semibold text-base">{author.name}</div>
-          <div className="text-xs text-muted-foreground">{date}</div>
+          <div className="font-semibold text-base">{sanitizeText(author.name)}</div>
+          <div className="text-xs text-muted-foreground">{sanitizeText(date)}</div>
         </div>
         {highlighted && (
           <span className="ml-auto text-xs px-2 py-1 rounded bg-blue-100 text-blue-700 font-medium">
@@ -41,7 +42,9 @@ export default function CommentCard({
         )}
       </CardHeader>
       <CardContent>
-        <CardDescription className="text-sm text-gray-700">{content}</CardDescription>
+        <CardDescription className="text-sm text-gray-700">
+          {sanitizeText(content)}
+        </CardDescription>
       </CardContent>
     </Card>
   )

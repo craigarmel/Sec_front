@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { sanitizeComment } from "@/lib/utils";
 
 type CommentFormProps = {
-  onSubmit: (comment: string) => void;
-  loading?: boolean;
-  placeholder?: string;
+  readonly onSubmit: (comment: string) => void;
+  readonly loading?: boolean;
+  readonly placeholder?: string;
 };
 
 export default function CommentForm({
@@ -31,7 +32,9 @@ export default function CommentForm({
       setError("Merci d'écrire un commentaire avant de publier.");
       return;
     }
-    onSubmit(comment.trim());
+    // Sanitize le commentaire avant de l'envoyer
+    const sanitizedComment = sanitizeComment(comment.trim());
+    onSubmit(sanitizedComment);
     setComment("");
     setError("");
   };

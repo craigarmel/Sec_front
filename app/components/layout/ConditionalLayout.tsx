@@ -13,9 +13,16 @@ export default function ConditionalLayout({ children }: ConditionalLayoutProps) 
   const isAdminPage = pathname?.startsWith("/admin");
   const isUserPage = pathname?.startsWith("/user");
   const isAuthPage = pathname?.startsWith("/auth");
+  const isIdAriclePage = pathname?.startsWith("/articles/");
 
   if (isAdminPage || isUserPage || isAuthPage) {
     return <>{children}</>;
+  }
+  else if(isIdAriclePage) {
+    return <>
+        <Header />
+        {children}
+    </>
   }
 
   return (

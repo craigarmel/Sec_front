@@ -74,6 +74,17 @@ function RegisterForm() {
           placeholder="Confirmez votre mot de passe"
           id="confirm-password"
         />
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="consent"
+            className="accent-indigo-600"
+            required
+          />
+          <label htmlFor="consent" className="text-sm select-none cursor-pointer">
+            J&apos;accepte les <a href="/conditions" className="underline text-indigo-600">conditions d&apos;utilisation</a>
+          </label>
+        </div>
       </div>
     </form>
   )

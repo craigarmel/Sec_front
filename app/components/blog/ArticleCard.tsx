@@ -3,14 +3,15 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import Image from "next/image"
 import Link from "next/link"
+import { sanitizeText } from "@/lib/utils"
 
 type ArticleCardProps = {
-  title: string
-  description: string
-  imageUrl?: string
-  link: string
-  date?: string
-  author?: string
+  readonly title: string
+  readonly description: string
+  readonly imageUrl?: string
+  readonly link: string
+  readonly date?: string
+  readonly author?: string
 }
 
 export default function ArticleCard({
@@ -40,17 +41,17 @@ export default function ArticleCard({
       <CardHeader>
         <CardTitle>
           <Link href={link} className="hover:underline underline-offset-4 transition-colors duration-200">
-            {title}
+            {sanitizeText(title)}
           </Link>
         </CardTitle>
         {date && (
           <span className="text-xs text-muted-foreground">
-            {date}{author && <> &middot; {author}</>}
+            {sanitizeText(date)}{author && <> &middot; {sanitizeText(author)}</>}
           </span>
         )}
       </CardHeader>
       <CardContent>
-        <CardDescription className="line-clamp-3">{description}</CardDescription>
+        <CardDescription className="line-clamp-3">{sanitizeText(description)}</CardDescription>
       </CardContent>
       <CardFooter>
         <Link

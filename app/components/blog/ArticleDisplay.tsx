@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { sanitizeText } from "@/lib/utils";
 
 type ArticleDisplayProps = {
-  title: string;
-  description: string;
-  imageUrl?: string;
-  link: string;
-  date?: string;
-  author?: string;
+  readonly title: string;
+  readonly description: string;
+  readonly imageUrl?: string;
+  readonly link: string;
+  readonly date?: string;
+  readonly author?: string;
 };
 
 export default function ArticleDisplay({
@@ -42,17 +43,17 @@ export default function ArticleDisplay({
             target="_blank"
             rel="noopener noreferrer"
           >
-            {title}
+            {sanitizeText(title)}
           </Link>
         </h1>
         {date && (
           <span className="text-sm text-gray-500">
-            {date}
-            {author && <> &middot; {author}</>}
+            {sanitizeText(date)}
+            {author && <> &middot; {sanitizeText(author)}</>}
           </span>
         )}
       </header>
-      <section className="mt-4 text-gray-700">{description}</section>
+      <section className="mt-4 text-gray-700">{sanitizeText(description)}</section>
     </div>
   );
 }

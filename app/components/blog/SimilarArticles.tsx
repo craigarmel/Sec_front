@@ -10,16 +10,16 @@ import {
 import ArticleCard from "./ArticleCard"
 
 type Article = {
-  title: string
-  description: string
-  imageUrl?: string
-  link: string
-  date?: string
-  author?: string
+  readonly title: string
+  readonly description: string
+  readonly imageUrl?: string
+  readonly link: string
+  readonly date?: string
+  readonly author?: string
 }
 
 type SimilarArticlesProps = {
-  articles: Article[]
+  readonly articles: readonly Article[]
 }
 
 export default function SimilarArticles({ articles }: SimilarArticlesProps) {
@@ -32,7 +32,7 @@ export default function SimilarArticles({ articles }: SimilarArticlesProps) {
             const article = articles[idx];
             if (!article) return null;
             return (
-              <CarouselItem key={idx} className="sm:basis-1/2 md:basis-1/3">
+              <CarouselItem key={`${article.link}-${idx}`} className="sm:basis-1/2 md:basis-1/3">
                 <ArticleCard
                   title={article.title}
                   description={article.description}
