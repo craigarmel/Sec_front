@@ -1,14 +1,21 @@
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export const ProtectedRoute = ({ children, user }) => {
-const router = useRouter();
+interface ProtectedRouteProps {
+  children: ReactNode;
+  user: unknown;
+}
 
-useEffect(() => {
-if (!user) router.push("/login");
-}, [user, router]);
+export const ProtectedRoute = ({ children, user }: ProtectedRouteProps) => {
+  const router = useRouter();
 
-if (!user) return null;
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, [user, router]);
 
-return children;
+  if (!user) return null;
+
+  return <>{children}</>;
 };
