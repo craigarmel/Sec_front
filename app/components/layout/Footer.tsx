@@ -9,7 +9,12 @@ export default function Footer() {
           <span className="text-gray-400">&copy; {new Date().getFullYear()}</span>
         </div>
         <div className="flex gap-4">
-          <Link href="/legal" className="text-white transition">Mentions légales</Link>
+          <Link href="/legal" className="text-white hover:text-gray-300 transition">
+            Mentions légales
+          </Link>
+          <Link href="/legal" className="text-white hover:text-gray-300 transition">
+            Politique de confidentialité
+          </Link>
         </div>
       </div>
     </footer>

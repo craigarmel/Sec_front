@@ -1,14 +1,14 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import Dashboard from "./page"
+"use client";
+
+import { SidebarProvider } from "@/components/ui/sidebar"
+import { ProtectedRoute } from "@/app/components/security/ProtectedRoute"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider>
-      <Dashboard />
-      <main>
-        <SidebarTrigger />
+    <ProtectedRoute requireAuth>
+      <SidebarProvider>
         {children}
-      </main>
-    </SidebarProvider>
+      </SidebarProvider>
+    </ProtectedRoute>
   )
 }
