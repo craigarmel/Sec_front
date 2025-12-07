@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { sanitizeComment } from "@/lib/utils";
+import { MessageSquare, AlertCircle, Loader2 } from "lucide-react";
 
 type CommentFormProps = {
   readonly onSubmit: (comment: string) => void;
@@ -14,7 +17,7 @@ type CommentFormProps = {
 export default function CommentForm({
   onSubmit,
   loading = false,
-  placeholder = "Votre commentaire...",
+  placeholder = "Partagez vos pensées...",
 }: CommentFormProps) {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
@@ -32,42 +35,95 @@ export default function CommentForm({
       setError("Merci d'écrire un commentaire avant de publier.");
       return;
     }
-    // Sanitize le commentaire avant de l'envoyer
+    if (comment.trim().length < 3) {
+      setError("Votre commentaire doit contenir au moins 3 caractères.");
+      return;
+    }
     const sanitizedComment = sanitizeComment(comment.trim());
     onSubmit(sanitizedComment);
     setComment("");
     setError("");
   };
 
+  const characterCount = comment.length;
+  const maxLength = 800;
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full max-w-2xl mx-auto flex flex-col gap-3 bg-white/80 rounded shadow p-5 my-4"
-    >
-      <label htmlFor="comment" className="font-medium text-gray-800">
-        Ajouter un commentaire
-      </label>
-      <Textarea
-        id="comment"
-        value={comment}
-        onChange={handleChange}
-        placeholder={placeholder}
-        rows={4}
-        className="resize-none"
-        disabled={loading}
-        autoFocus
-        maxLength={800}
-      />
-      {error && <span className="text-xs text-red-500">{error}</span>}
-      <div className="flex justify-end">
-        <Button
-          type="submit"
-          disabled={loading || !comment.trim()}
-          className="bg-blue-600 hover:bg-blue-700 text-white"
-        >
-          {loading ? "Publication..." : "Publier"}
-        </Button>
-      </div>
-    </form>
+    <Card className="border-2 border-dashed hover:border-solid transition-colors">
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900/30">
+            <MessageSquare className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+          </div>
+          <div>
+            <CardTitle className="text-lg">Ajouter un commentaire</CardTitle>
+            <CardDescription>
+              Partagez votre avis et participez à la discussion
+            </CardDescription>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+          <div className="space-y-2">
+            <Textarea
+              id="comment"
+              value={comment}
+              onChange={handleChange}
+              placeholder={placeholder}
+              rows={5}
+              className="resize-none min-h-[120px]"
+              disabled={loading}
+              maxLength={maxLength}
+            />
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span>
+                {characterCount >= 3 ? (
+                  <span className="text-green-600">✓ Longueur valide</span>
+                ) : (
+                  <span>{3 - characterCount} caractères minimum</span>
+                )}
+              </span>
+              <span>
+                {characterCount} / {maxLength}
+              </span>
+            </div>
+          </div>
+          <div className="flex justify-end gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setComment("");
+                setError("");
+              }}
+              disabled={loading}
+            >
+              Annuler
+            </Button>
+            <Button
+              type="submit"
+              disabled={loading || !comment.trim() || comment.trim().length < 3}
+              className="bg-indigo-600 hover:bg-indigo-700"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Publication...
+                </>
+              ) : (
+                "Publier le commentaire"
+              )}
+            </Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

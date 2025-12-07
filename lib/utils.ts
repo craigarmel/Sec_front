@@ -58,3 +58,51 @@ export function sanitizeComment(html: string): string {
     allowedSchemes: ["http", "https"],
   })
 }
+
+/**
+ * Format a date string or Date object to a localized French date string
+ * Returns empty string if date is invalid
+ */
+export function formatDate(dateString: string | Date | null | undefined, options?: Intl.DateTimeFormatOptions): string {
+  if (!dateString) return "";
+  
+  const date = typeof dateString === 'string' ? new Date(dateString) : dateString;
+  
+  // Vérifier si la date est valide
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+  
+  const defaultOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  
+  return date.toLocaleDateString("fr-FR", options || defaultOptions);
+}
+
+/**
+ * Format a date string or Date object to a localized French date and time string
+ * Returns empty string if date is invalid
+ */
+export function formatDateTime(dateString: string | Date | null | undefined, options?: Intl.DateTimeFormatOptions): string {
+  if (!dateString) return "";
+  
+  const date = typeof dateString === 'string' ? new Date(dateString) : dateString;
+  
+  // Vérifier si la date est valide
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+  
+  const defaultOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+  
+  return date.toLocaleDateString("fr-FR", options || defaultOptions);
+}

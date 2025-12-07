@@ -16,7 +16,7 @@ export default function ConditionalLayout({ children }: ConditionalLayoutProps) 
   const isIdAriclePage = pathname?.startsWith("/articles/");
 
   if (isAdminPage || isUserPage || isAuthPage) {
-    return <>{children}</>;
+    return <div className="h-screen w-full">{children}</div>;
   }
   else if(isIdAriclePage) {
     return <>
